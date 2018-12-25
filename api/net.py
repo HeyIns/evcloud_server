@@ -21,8 +21,7 @@ from network.api import NetworkAPI
 @catch_error
 @args_required('group_id')
 def get_vlan_list(args=None):
-    '''获取网络列表'''
-    ret_list = []
+    '''获取vlan列表'''
     group_api = GroupAPI()
     group = group_api.get_group_by_id(args['group_id'])
 
@@ -51,6 +50,36 @@ def get_vlan_list(args=None):
                 'gateway': vlan.gateway,
                 'remarks': vlan.remarks
                 })
+        return {'res': True, 'list': vlan_list}
+    return {'res': False, 'err': ERR_VLAN_NO_FIND}
+
+
+@api_log
+@catch_error
+def get_vlan_list_all():
+    '''管理员模式获取vlan列表（all）'''
+    network_api = NetworkAPI()
+    vlans = network_api.get_vlan_list_all()
+
+    if vlans:
+        vlan_list = []
+        for vlan in vlans:
+            vlan_list.append({
+                'id': vlan.id,
+                'vlan': vlan.vlan,
+                'br': vlan.br,
+                'type_code': vlan.type_code,
+                'type': vlan.type_name,
+                'enable': vlan.enable,
+                'order': vlan.order,
+                'ip_count': vlan.ip_count,
+                'ip_used': vlan.ip_used,
+                'ip_free': vlan.ip_count - vlan.ip_used,
+                'subnetip': vlan.subnetip,
+                'netmask': vlan.netmask,
+                'gateway': vlan.gateway,
+                'remarks': vlan.remarks
+            })
         return {'res': True, 'list': vlan_list}
     return {'res': False, 'err': ERR_VLAN_NO_FIND}
 

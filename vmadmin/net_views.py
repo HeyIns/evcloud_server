@@ -15,8 +15,7 @@ from django.conf import settings
 
 from api.error import ERROR_CN
 
-from api.group import get_list as api_group_get_list
-from api.net import get_vlan_list as api_net_get_vlan_list
+from api.net import get_vlan_list_all as api_net_get_vlan_list_all
 from api.net import get_vlan as api_net_get_vlan
 from api.net import set_vlan_remarks as api_net_set_vlan_remarks
 from api.net import get_vlan_ip_list as api_net_get_vlan_ip_list
@@ -26,13 +25,10 @@ from api.net import add_vlan_ip as api_net_add_vlan_ip
 @login_required
 def net_vlan_list_view(req):
     dicts = {}
-    group_info = api_group_get_list({'req_user': req.user})
     vlan_list = []
-    if group_info['res']:
-        for group in group_info['list']:
-            vlans_info = api_net_get_vlan_list({'req_user': req.user,'group_id':group['id']})
-            if vlans_info['res']:
-                vlan_list.extend(vlans_info['list'])
+    vlans_info = api_net_get_vlan_list_all()
+    if vlans_info['res']:
+        vlan_list.extend(vlans_info['list'])
     dicts['p'] = get_page(vlan_list, req)
     return render(req,'vmadmin_net_vlan_list.html', dicts)
 

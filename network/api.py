@@ -12,6 +12,13 @@ class NetworkAPI(object):
         else:
             self.manager = NetManager()
 
+    def get_vlan_list_all(self):
+        vlans = self.manager.get_vlan_list_all()
+        ret_list = []
+        for vlan in vlans:
+            ret_list.append(Vlan(vlan))
+        return ret_list
+
     def get_vlan_list_by_type_id(self, type_id):
         vlans = self.manager.get_vlan_list_by_type(type_id)
         ret_list = []

@@ -71,32 +71,6 @@ class VMManager(VirtManager):
         else:
             error += '创建虚拟机失败,'
 
-        # if not old_host_alive:
-        #     if vm.set_host(host_id):
-        #         if self.define(host_ipv4, xml_desc):
-        #             res = True
-        #         else:
-        #             error += '创建虚拟机失败,'
-        #             if not vm.set_host(old_host_id):
-        #                 error += '数据库还原失败,'
-        # elif self.undefine(old_host_ipv4, vm_uuid):
-        #     undefined = True
-        #     if vm.set_host(host_id):
-        #         if self.define(host_ipv4, xml_desc):
-        #             res = True
-        #         else:
-        #             error += '创建虚拟机失败,'
-        #             if not vm.set_host(old_host_id):
-        #                 error += '数据库还原失败,'
-        #             if not self.define(old_host_ipv4, old_xml_desc):
-        #                 error += '重建虚拟机失败,'
-        #     else:
-        #         error += '数据库修改失败,'
-        #         if not self.define(old_host_ipv4, old_xml_desc):
-        #             error += '重建虚拟机失败,'
-        # else:
-        #     error += '原宿主机删除虚拟机失败,'
-
         print(error)
         #迁移日志
         log = MigrateLog()

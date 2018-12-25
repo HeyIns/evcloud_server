@@ -8,12 +8,20 @@
   </div>
   <div class="panel-body">
 	{%if vlan_info%}
-  	<div>
-  		<strong>名称:</strong>{{vlan_info.vlan|default_if_none:''}}<br>
-  		<strong>IP:</strong>{{vlan_info.subnetip|default_if_none:''}}<br>
-  		<strong>掩码:</strong>{{vlan_info.netmask|default_if_none:''}}<br>
-  		<strong>网关:</strong>{{vlan_info.gateway|default_if_none:''}}<br>
-  	</div>
+    <table class="table">
+        <tr>
+            <th>名称</th>
+            <th>IP</th>
+            <th>掩码</th>
+            <th>网关</th>
+        </tr>
+        <tr>
+            <td>{{vlan_info.vlan|default_if_none:''}}</td>
+            <td>{{vlan_info.subnetip|default_if_none:''}}</td>
+            <td>{{vlan_info.netmask|default_if_none:''}}</td>
+            <td>{{vlan_info.gateway|default_if_none:''}}</td>
+        </tr>
+    </table>
   	{% else %}
   	<span style="color: red;">无此VLAN信息</span>
  	{%endif%}
@@ -73,13 +81,13 @@
 			</script>
 			{%if request.GET.kind == 'netmask' or not request.GET.kind %}
             <span class="input-group-addon">子网IP</span>
-            <input type="text" class="form-control" name="subnetip" value="{{request.GET.subnetip}}" placeholder="例如：10.0.80.0" />            
+            <input type="text" class="form-control" name="subnetip" value="{{request.GET.subnetip}}" />
             
             <span class="input-group-addon">子网掩码</span>
-            <input type="text" class="form-control" name="netmask" value="{{request.GET.netmask}}"  placeholder="例如：255.255.254.0"/>
+            <input type="text" class="form-control" name="netmask" value="{{request.GET.netmask}}"  />
 
             <span class="input-group-addon">网关</span>
-            <input type="text" class="form-control" name="gateway" value="{{request.GET.gateway}}" placeholder="例如：10.0.81.254"/>
+            <input type="text" class="form-control" name="gateway" value="{{request.GET.gateway}}" />
 
             {% else %}            
             

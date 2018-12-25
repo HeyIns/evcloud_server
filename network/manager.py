@@ -132,6 +132,14 @@ class NetManager(object):
             return macip[0].vlan.br 
         return  ''
 
+    def get_vlan_list_all(self):
+        from network.models import Vlan as ModelVlan
+        vlan_list = ModelVlan.objects.all()
+        vlan_dic = {}
+        for vlan in vlan_list:
+            vlan_dic[vlan.id] = vlan
+        return list(vlan_dic.values())
+
     def get_vlan_list_by_group_id(self, group_id):
         from compute.models import Host as ModelHost
         host_list = ModelHost.objects.filter(group_id = group_id)

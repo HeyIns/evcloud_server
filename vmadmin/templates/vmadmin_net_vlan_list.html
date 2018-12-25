@@ -20,7 +20,7 @@
 		<th>子网IP</th>
 		<th>子网掩码</th>
 		<th>网关</th>
-		<th>主机IP</th>
+		<th>空闲IP</th>
 		<th>状态</th>
 		<th width="180px">备注</th>
 		<th width="120px"></th>
@@ -34,7 +34,7 @@
 	<td>{{vlan.subnetip|default_if_none:''}}</td>
 	<td>{{vlan.netmask|default_if_none:''}}</td>
 	<td>{{vlan.gateway|default_if_none:''}}</td>
-	<td>总:{{vlan.ip_count}}<br/>余:{{vlan.ip_free}}</td>
+	<td>{{vlan.ip_free}}/{{vlan.ip_count}}</td>
 
 	<td>
 	{%if vlan.enable%}<img alt="True" src="/static/admin/img/icon-yes.gif">{%else%}<img alt="False" src="/static/admin/img/icon-no.gif">{%endif%}	</td>
