@@ -163,9 +163,9 @@ def net_batch_create_macip(req):
         vlan_info = api_net_get_vlan({'req_user': req.user,'vlan_id':arg_vlan})    
     if arg_vlan and vlan_info['res']:
         dicts['vlan_info'] = vlan_info['info']
-        if vlan_info['info']['ip_count'] > 0 :
-            dicts['err'] = "该VLAN已添加过ip"
-        elif not vlan_info['info']['enable']:
+        # if vlan_info['info']['ip_count'] > 0 :
+            # dicts['err'] = "该VLAN已添加过ip"
+        if not vlan_info['info']['enable']:
             dicts['err'] = "该VLAN未启用"
         else:
             try:

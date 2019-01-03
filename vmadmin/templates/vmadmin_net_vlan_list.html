@@ -50,11 +50,10 @@
 	</td>
 	<td>
 	{%if  vlan.enable %}
-		{%if not vlan.ip_count %}
-			<button type="button" class="btn btn-xs btn-primary" onclick="window.location.href='../ip/batch_create/?vlan={{vlan.id}}'">批量添加IP</button>	
-		{% else %}		
+        <button type="button" class="btn btn-xs btn-primary" onclick="window.location.href='../ip/batch_create/?vlan={{vlan.id}}'">批量添加IP</button>
+		{%if vlan.ip_count %}
 		<button type="button" class="btn btn-xs btn-success" onclick="window.location.href='../ip/list/?vlan={{vlan.id}}'">查看IP列表</button>	
-		{%endif%}	
+		{%endif%}
 	{%endif%}
 	</td>
 </tr>
